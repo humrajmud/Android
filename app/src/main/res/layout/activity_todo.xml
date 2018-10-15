@@ -7,6 +7,15 @@
     android:layout_height="match_parent"
     tools:context=".TodoActivity">
 
+    <!--ConstraintLayout widget root element with 3 children elements namely, a TextView and two Buttons widget elements-->
+
+
+    <!-- id is a unique resource name for the element, which can be used to obtain a reference to the ViewGroup from the application -->
+    <!-- once id is defined can be referenced with a method findViewById(R.id.name) -->
+    <!--widget attributes for width and height set to parent to be as big as the parent object or
+    wrap_content which will be as big as the content requires. -->
+    <!--buttonNext and the buttonPrev is defined in the res > values > strings.xml file. -->
+
     <TextView
         android:id="@+id/textViewTodo"
         android:layout_width="330dp"
@@ -48,4 +57,12 @@
         app:layout_constraintRight_toRightOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>
+
+
+    <!-- view definition in MVC -->
+
+
+
+
+
 
