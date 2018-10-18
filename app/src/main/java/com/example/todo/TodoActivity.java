@@ -15,7 +15,7 @@ public class TodoActivity extends AppCompatActivity {
 
     private String[] mTodos;
     private int mTodoIndex = 0;
-
+// variables created
 
 
     // In case of state change, due to rotating the phone
@@ -43,6 +43,10 @@ public class TodoActivity extends AppCompatActivity {
         savedInstanceState.putInt(TODO_INDEX, mTodoIndex);
     }
 
+    // onSaveInstanceState method from parent class passes savedInstanceState
+    // and a type bundle to declare
+// super. is called to instantiate onSaveInstanceState from parent .putInt called and
+    //variables passed through TODO_INDEX, mTodoIndex.
 
     @Override
 
