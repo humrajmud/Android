@@ -78,10 +78,6 @@ public class TodoActivity extends AppCompatActivity {
         }
 
 
-
-
-
-
         // initialize member TextView so we can manipulate it later
         //once id is defined can be referenced with a method findViewById(R.id.name)
         //Activity has a method findViewById(int id) which returns a View object for the widget id passed to it.
@@ -109,5 +105,21 @@ public class TodoActivity extends AppCompatActivity {
                 TodoTextView.setText(mTodos[mTodoIndex]);
             }
         });
+
+        Button buttonPrev;
+        buttonPrev = (Button) findViewById(R.id.buttonPrev);
+
+        buttonPrev.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+                mTodoIndex += 1;
+                mTodoIndex = (mTodoIndex + 1) % mTodos.length;
+                TodoTextView.setText(mTodos[mTodoIndex]);
+            }
+        });
+
+
+
     }
 }
