@@ -5,10 +5,10 @@ import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 import android.util.Log;
+
 
 
 public class TodoActivity extends AppCompatActivity {
@@ -82,7 +82,8 @@ public class TodoActivity extends AppCompatActivity {
         //once id is defined can be referenced with a method findViewById(R.id.name)
         //Activity has a method findViewById(int id) which returns a View object for the widget id passed to it.
         final TextView TodoTextView;
-        TodoTextView = (TextView) findViewById(R.id.textViewTodo);
+        TodoTextView = (TextView) findViewById(R.id.textViewTodoDetail);
+
 
 
         // read the todo array from res/values/strings.xml
@@ -90,6 +91,7 @@ public class TodoActivity extends AppCompatActivity {
         mTodos = res.getStringArray(R.array.todo);
         // display the first task from mTodo array in the TodoTextView
         TodoTextView.setText(mTodos[mTodoIndex]);
+
 
         Button buttonNext;
         buttonNext = (Button) findViewById(R.id.buttonNext);
@@ -101,7 +103,7 @@ public class TodoActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 mTodoIndex += 1;
-                mTodoIndex = (mTodoIndex + 1) % mTodos.length;
+                mTodoIndex = (mTodoIndex) % mTodos.length;
                 TodoTextView.setText(mTodos[mTodoIndex]);
             }
         });
@@ -113,12 +115,20 @@ public class TodoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                mTodoIndex += 1;
-                mTodoIndex = (mTodoIndex + 1) % mTodos.length;
+                mTodoIndex -= 1;
+                mTodoIndex = (mTodoIndex) % mTodos.length;//create work around for prev button if index = 0 add +4
                 TodoTextView.setText(mTodos[mTodoIndex]);
             }
         });
 
+        Button buttonTodoDetail = (Button)findViewById(R.id.buttonTodoDetail);
+        buttonTodoDetail.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = TodoDetailActivity.newIntent(TodoActivity.this, mTodoIndex);
+                startActivity(intent);
+            }
+        });
 
 
     }
