@@ -102,8 +102,11 @@ public class TodoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                // if statement to cycle the array
                 mTodoIndex += 1;
-                mTodoIndex = (mTodoIndex) % mTodos.length;
+                if (mTodoIndex > 4) {
+                    mTodoIndex = 0;
+                }
                 TodoTextView.setText(mTodos[mTodoIndex]);
             }
         });
@@ -115,8 +118,11 @@ public class TodoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                // if statement to cycle the array
                 mTodoIndex -= 1;
-                mTodoIndex = (mTodoIndex) % mTodos.length;//create work around for prev button if index = 0 add +4
+                if (mTodoIndex < 0) {
+                    mTodoIndex = 4;
+                }
                 TodoTextView.setText(mTodos[mTodoIndex]);
             }
         });
