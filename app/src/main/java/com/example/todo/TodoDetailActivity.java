@@ -18,9 +18,19 @@ public class TodoDetailActivity extends AppCompatActivity {
 
     // Any calling activity would call this static method and pass the necessary
     // key, value data pair in an intent object.
+    //what is intent
+    //how we use intent
+    // static method declaring the data it needs ( todoindex) any calling activity
+    //would call static method and pass the needed key, value data pair in an intent object
+    //achived
+    //exam question -- if i have two activities where should intent data be declared??
+    //the activity that uses the data
+    //instantiate a new intent object
     public static Intent newIntent(Context packageContext, int todoIndex){
         Intent intent = new Intent(packageContext, TodoDetailActivity.class);
         intent.putExtra(TODO_INDEX,todoIndex);
+        //.putextra method used on new intent object then passed a key value pair
+        //return object but not done anything with it yet
         return intent;
     }
 
