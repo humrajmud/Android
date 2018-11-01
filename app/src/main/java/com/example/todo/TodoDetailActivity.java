@@ -26,6 +26,7 @@ public class TodoDetailActivity extends AppCompatActivity {
     //exam question -- if i have two activities where should intent data be declared??
     //the activity that uses the data
     //instantiate a new intent object
+    //create new intent here then other activitys can call this to use
     public static Intent newIntent(Context packageContext, int todoIndex){
         Intent intent = new Intent(packageContext, TodoDetailActivity.class);
         intent.putExtra(TODO_INDEX,todoIndex);
@@ -81,7 +82,7 @@ public class TodoDetailActivity extends AppCompatActivity {
             TODO: refactor to a data layer
         */
         Resources res = getResources();
-        String[] todoDetails = res.getStringArray(R.array.todo_detail);
+        String[] todoDetails = res.getStringArray(R.array.todo);
         // display the first task from mTodo array in the TodoTextView
         textViewTodoDetail.setText(todoDetails[todoIndex]);
 

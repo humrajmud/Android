@@ -34,14 +34,13 @@ public class TodoActivity extends AppCompatActivity {
     // Android calls the activity method onSaveInstanceState(Bundle) before onStop().
     // We can override this method and add the value mTodoIndex to be saved in the Bundle object.
     // The bundle object requires a key, value pair.
-
     // override to write the value of mTodoIndex into the Bundle with TODO_INDEX as its key
 
-    @Override
-    public void onSaveInstanceState(Bundle savedInstanceState) {
+   @Override
+   public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState); // when rotates it jumps to this so view can be serialized
         savedInstanceState.putInt(TODO_INDEX, mTodoIndex); // view gets stored in here as a bundle
-    }
+  }
 
     // onSaveInstanceState method from parent class passes savedInstanceState
     // and a type bundle to declare
@@ -57,6 +56,10 @@ public class TodoActivity extends AppCompatActivity {
         // call the super class onCreate from parent and pass paramater savedinstanceState which is a bundle type to complete the creation of Activity
         super.onCreate(savedInstanceState);
 
+        //The android.util.log class sends log messages to a shared log.
+        // There are a variety of option; here is an example of a useful log for debugging while monitoring change of state at run time.
+        Log.d(TAG, " *** Just to say the PC is in onCreate!");
+
         //in the onCreate(Bundle) method, restore the index value
         // check for saved state due to changes such as rotation or back button
         // and restore any saved state such as the todo index
@@ -64,13 +67,10 @@ public class TodoActivity extends AppCompatActivity {
 
         // if saved instance not = to null do the bottem line ( get the param and put in savedinstance so we can reconstruct later)
         // when phone rotates
+
         if (savedInstanceState != null) {
             mTodoIndex = savedInstanceState.getInt(TODO_INDEX, 0);
         }
-
-        //The android.util.log class sends log messages to a shared log.
-        // There are a variety of option; here is an example of a useful log for debugging while monitoring change of state at run time.
-        Log.d(TAG, " *** Just to say the PC is in onCreate!");
 
         // UI, setContentView(R.layout.activity_todo) is called
         //method inflates each widget in the layout XML resources file and instantiate it as defined by its attributes, hence the equivalent object.
@@ -84,6 +84,9 @@ public class TodoActivity extends AppCompatActivity {
         // xml file(textviewtodo) casted onto text view and an object todotextview is created
         TodoTextView = (TextView) findViewById(R.id.textViewTodo);
         setTextViewComplete("");
+
+
+
 
         // read the todo array from res/values/strings.xml
         //class called resources, instantiating object res
@@ -130,12 +133,15 @@ public class TodoActivity extends AppCompatActivity {
             }
         });
 
+
+
         Button buttonTodoDetail = (Button) findViewById(R.id.buttonTodoDetail);
         buttonTodoDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Note, the child class being called has a static method determining the parameter
+                // to be passed to it in the intent object
                 Intent intent = TodoDetailActivity.newIntent(TodoActivity.this, mTodoIndex);
-                startActivity(intent);
 
                 //second param request code identifies the call as there could be many intenets
                 startActivityForResult(intent, IS_SUCCESS);
@@ -153,6 +159,14 @@ public class TodoActivity extends AppCompatActivity {
         intent date attached with intent "extras"
     */
 
+
+    //intent objects can be used to return data from the called activity.
+    //following code returns a boolean value from the todoDetail activity back to the todoactivity.
+    //use this value to check user response and display a tick character for todos checked.
+    //method that adds a key, value pair to the intent object.
+    //the onActivityResult(int, int, intent) method can be used to
+    // retrieve the int result status ints as well the intent object.
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
 
@@ -160,7 +174,7 @@ public class TodoActivity extends AppCompatActivity {
             if (intent != null) {
                 //data is intent from child activity
                 boolean isTodoComplete = intent.getBooleanExtra(IS_TODO_COMPLETE, false);
-
+                updateTodoComplete(isTodoComplete);
             } else {
                 Toast.makeText(this, "Back button pressed", Toast.LENGTH_SHORT).show();
             }
@@ -170,6 +184,7 @@ public class TodoActivity extends AppCompatActivity {
         }
 
     }
+
 
     private void updateTodoComplete(boolean is_todo_complete) {
 
@@ -196,5 +211,8 @@ public class TodoActivity extends AppCompatActivity {
 
         textViewComplete.setText(message);
     }
+    public void onCheckboxIsCompleteClicked(View view) {
+    }
+
 
 }

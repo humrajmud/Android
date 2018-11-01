@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TodoActivity">
+    tools:context="com.example.todo.TodoActivity">
 
     <!--ConstraintLayout widget root element with 3 children elements namely, a TextView and two Buttons widget elements-->
 
